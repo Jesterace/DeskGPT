@@ -37,6 +37,52 @@ function createWindow() {
 
     win.loadURL("https://chatgpt.com");
 
+    // Enable normal copy/paste/select-all shortcuts
+    const appMenu = Menu.buildFromTemplate([
+        {
+            label: "Edit",
+            submenu: [
+                { role: "undo" },
+                { role: "redo" },
+                { type: "separator" },
+                { role: "cut" },
+                { role: "copy" },
+                { role: "paste" },
+                { role: "selectAll" }
+            ]
+        }
+    ]);
+
+    Menu.setApplicationMenu(appMenu);
+
+    // Right-click menu for selected text / text fields
+    win.webContents.on("context-menu", (event, params) => {
+        const contextMenu = Menu.buildFromTemplate([
+            {
+                label: "Copy",
+                role: "copy",
+                enabled: params.selectionText && params.selectionText.length > 0
+            },
+            {
+                label: "Cut",
+                role: "cut",
+                enabled: params.isEditable
+            },
+            {
+                label: "Paste",
+                role: "paste",
+                enabled: params.isEditable
+            },
+            { type: "separator" },
+            {
+                label: "Select All",
+                role: "selectAll"
+            }
+        ]);
+
+        contextMenu.popup({ window: win });
+    });
+
     win.webContents.setWindowOpenHandler(({ url }) => {
         shell.openExternal(url);
         return { action: "deny" };
