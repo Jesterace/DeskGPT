@@ -1,0 +1,37 @@
+{
+  "name": "deskgpt",
+  "version": "1.0.0",
+  "description": "Unofficial ChatGPT Linux desktop wrapper",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --linux AppImage"
+  },
+  "keywords": [
+    "chatgpt",
+    "electron",
+    "linux",
+    "desktop"
+  ],
+  "author": "Jared",
+  "license": "MIT",
+  "type": "commonjs",
+  "devDependencies": {
+    "electron-builder": "latest",
+    "electron": "latest"
+  },
+  "build": {
+    "appId": "com.jared.deskgpt",
+    "productName": "DeskGPT",
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "category": "Network",
+      "icon": "build/icon.png"
+    },
+    "appImage": {
+      "artifactName": "DeskGPT-${version}-${arch}.AppImage"
+    }
+  }
+}
