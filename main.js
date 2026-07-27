@@ -50,10 +50,32 @@ function createWindow() {
                 { role: "paste" },
                 { role: "selectAll" }
             ]
+        },
+        {
+            label: "View",
+            submenu: [
+                {
+                    label: "Refresh",
+                    accelerator: "CmdOrCtrl+R",
+                    click: () => win.webContents.reload()
+                },
+                {
+                    label: "Hard Refresh",
+                    role: "forceReload",
+                    accelerator: "CmdOrCtrl+Shift+R"
+                }
+            ]
         }
     ]);
 
     Menu.setApplicationMenu(appMenu);
+
+    win.webContents.on("before-input-event", (event, input) => {
+        if (input.type === "keyDown" && input.key === "F5") {
+            event.preventDefault();
+            win.webContents.reload();
+        }
+    });
 
     // Right-click menu for selected text / text fields
     win.webContents.on("context-menu", (event, params) => {
@@ -77,6 +99,11 @@ function createWindow() {
             {
                 label: "Select All",
                 role: "selectAll"
+            },
+            { type: "separator" },
+            {
+                label: "Refresh",
+                click: () => win.webContents.reload()
             }
         ]);
 
@@ -134,7 +161,7 @@ function createTray() {
                     title: "About DeskGPT",
                     message: "DeskGPT",
                     detail:
-                    "Version 1.0.0\n\n" +
+                    `Version ${app.getVersion()}\n\n` +
                     "Unofficial Linux desktop wrapper for ChatGPT.\n\n" +
                     "Created by Jared.",
                     buttons: ["OK"]

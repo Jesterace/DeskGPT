@@ -10,6 +10,8 @@ It gives ChatGPT its own Linux desktop app window, launcher icon, tray menu, and
 - System tray support
 - Hide to tray on close
 - About/version dialog
+- Browser-style refresh, hard refresh, and keyboard shortcuts
+- Refresh from the right-click context menu
 - Custom app icon
 - Linux launcher integration
 - AppImage packaging support
