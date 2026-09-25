@@ -1,5 +1,10 @@
 # DeskGPT
 
+> [!WARNING]
+> **Project status: abandoned and no longer maintained.**
+>
+> This repository is archived for historical reference. No further updates, bug fixes, or support are planned.
+
 DeskGPT is an unofficial Linux desktop wrapper for ChatGPT.
 
 It gives ChatGPT its own Linux desktop app window, launcher icon, tray menu, and global shortcut support without keeping it buried in browser tabs.
@@ -27,3 +32,4 @@ It gives ChatGPT its own Linux desktop app window, launcher icon, tray menu, and
 ```bash
 npm install
 npm start
+```
